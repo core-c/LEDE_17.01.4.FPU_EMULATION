@@ -1,0 +1,117 @@
+
+
+nog niet getest!!!!
+
+   * copy de build.sh file naar de 'source' directory, en run ./build.sh
+   
+   * opties voor build.sh:
+          ./build.sh
+          ./build.sh -1        make -j1
+          ./build.sh -4        make -j4
+          ./build.sh -v        make -j1 V=s
+
+build.sh doet alles.. /zou_moeten_doen:
+   * download de LEDE source code, als die nog niet aanwezig is
+   * setup directories (tbv. backups,downloads,configs)
+   * copy UJE_YUN config files naar de juiste locaties
+   * compileer de UJE_YUN firmware
+   * clean up wat onnodige bestanden
+		  
+#======================================================================================
+
+# de git LEDE source code downloaden
+
+mkdir LEDE_v17.04.1
+cd LEDE_v17.04.1
+git clone --depth=1 --branch v17.01.4 --single-branch https://git.lede-project.org/source.git
+cd source
+
+
+
+
+# de directory aanmaken voor bestanden die uiteindelijk op de target worden geplaatst.
+# hierin komen yun specifieke bestanden..
+
+mkdir files
+
+
+
+
+# copy 4 bestanden (met aanpassingen van configuratie bestanden), uit de ../SETUP/ directory. naar hun locaties:
+# source____.config                                ->   source/.config
+# source_target_linux_ar71xx____config-4.4         ->   source/target/linux/ar71xx/config-4.4
+# source_target_linux_ar71xx_image____generic.mk   ->   source/target/linux/ar71xx/image/generic.mk
+# source_target_linux_ar71xx_image____legacy.mk    ->   source/target/linux/ar71xx/image/legacy.mk
+
+cp ../SETUP/source____.config ./.config
+cp ../SETUP/source_target_linux_ar71xx____config-4.4 target/linux/ar71xx/config-4.4
+cp ../SETUP/source_target_linux_ar71xx_image____generic.mk target/linux/ar71xx/image/generic.mk
+cp ../SETUP/source_target_linux_ar71xx_image____legacy.mk target/linux/ar71xx/image/legacy.mk
+
+
+
+make kernel_menuconfig
+make menuconfig
+# exit meteen weer..
+
+
+
+make
+
+
+# de vers ge-cross-compileerde staat nu in:  bin/...
+
+
+
+
+----------------------------------------------------------------------------------------------------
+dit zijn de veranderingen aan .config om 'm succesvol compilerend te krijgen:
+----------------------------------------------------------------------------------------------------
+
+
+make kernel_menuconfig
+
+* Machine selection -->: op 1 na alle profiles uitschakelen, alleen "Arduino Yun" selecteren
+* Kernel type: MIPS FPU EMULATOR selecteren..   daar ging het allemaal om.
+* Bus options (PCI, PCMCIA, EISA, ISA, TC) -->: PCCard (PCMCIA,Cardbus) selecteren
+
+
+
+dan komt..
+
+
+
+make menuconfig
+
+* Target Profile: op 1 na alle profiles uitschakelen, alleen "Arduino Yun" selecteren
+* Advanced configuration options (for developers): Target Options --> selecteren
+    controleer de sub-opties..
+* Advanced configuration options (for developers): Toolchain Options --> selecteren
+    Binutils Version: selecteer 2.27
+    GCC compiler Version: selecteer gcc 5.x
+
+
+
+
+
+make
+
+
+
+
+* kernel modules --> Wireless drivers: kmod_mac80211_hwsim uitschakelen
+* kernel modules --> Network support --> kmod_wireguard uitschakelen
+* network --> WWan --> uitschakelen: comgt      comgt-directip      comgt-ncm
+
+
+
+
+
+aanpassen source/target/linux/ar71xx/config-4.4    :
+* toevoegen: CONFIG_MIPS_FPU_EMULATOR=y
+* aanpassen: CONFIG_CMDLINE="rootfstype=squashfs,jffs2 noinitrd"
+
+
+
+
+

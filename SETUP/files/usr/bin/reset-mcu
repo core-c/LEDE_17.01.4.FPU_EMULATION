@@ -1,0 +1,9 @@
+#!/bin/sh
+
+source /usr/bin/get-gpio-conf
+
+echo $GPIO_MCU_RESET > /sys/class/gpio/export
+echo "high" > /sys/class/gpio/gpio$GPIO_MCU_RESET/direction
+echo 1 > /sys/class/gpio/gpio$GPIO_MCU_RESET/value
+echo 0 > /sys/class/gpio/gpio$GPIO_MCU_RESET/value
+echo $GPIO_MCU_RESET > /sys/class/gpio/unexport

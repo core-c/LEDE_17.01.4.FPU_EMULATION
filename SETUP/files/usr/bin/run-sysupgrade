@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -e /usr/bin/kill-bridge ]; then
+	/usr/bin/kill-bridge
+fi
+
+cp "$1" /tmp || exit 1
+
+filename=`basename $1`
+
+exec sysupgrade -n "/tmp/$filename"

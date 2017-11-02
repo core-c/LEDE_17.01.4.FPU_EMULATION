@@ -1,0 +1,6 @@
+#!/bin/sh
+
+blink-start 100 system
+
+reset_has_fo=true
+/sbin/jffs2reset -y && /sbin/reboot
