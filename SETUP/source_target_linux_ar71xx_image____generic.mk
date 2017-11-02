@@ -108,7 +108,7 @@ TARGET_DEVICES += ap90q
 define Device/arduino-yun
   # [UJE]Yun     custom firmware with FPU_EMULATION compiled kernel & LEDE 17.01.4
   DEVICE_TITLE := UJE_Yun
-  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb-storage kmod-fs-ext4 e2fsprogs
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport kmod-usb-storage kmod-fs-ext4 e2fsprogs dosfstools fdisk rsync badblocks tune2fs
   BOARDNAME := Yun
   SUPPORTED_DEVICES := arduino-yun
   IMAGE_SIZE := 16000k

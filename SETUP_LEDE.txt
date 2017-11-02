@@ -50,10 +50,11 @@ cd source
 
 
 
-# de directory aanmaken voor bestanden die uiteindelijk op de target worden geplaatst.
-# hierin komen yun specifieke bestanden..
+# de directory aanmaken voor bestanden die uiteindelijk op de target worden geplaatst..
+# .. en copy alle yun specifieke bestanden naar "files"..
 
 mkdir files
+cp -R ../SETUP/files/* files/*
 
 
 

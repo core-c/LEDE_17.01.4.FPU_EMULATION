@@ -11,7 +11,7 @@ declare -a UJE0 = (""                                      ".config"            
 declare -a UJE1 = (""                                      "feeds.conf.default" "source____");
 declare -a UJE2 = ("target/linux/ar7/image/"               "Makefile"           "source_target_linux_ar7_image____");
 declare -a UJE3 = ("target/linux/ar71xx/"                  "config-4.4"         "source_target_linux_ar71xx____");
-declare -a UJE4 = ("target/linux/ar71xx/generic/profiles/" "uje_yun.mk"         "source_target_linux_ar71xx_generic_profiles____");
+#declare -a UJE4 = ("target/linux/ar71xx/generic/profiles/" "uje_yun.mk"         "source_target_linux_ar71xx_generic_profiles____");
 declare -a UJE5 = ("target/linux/ar71xx/image/"            "generic.mk"         "source_target_linux_ar71xx_image____");
 declare -a UJE6 = ("target/linux/ar71xx/image/"            "legacy.mk"          "source_target_linux_ar71xx_image____");
 declare -a UJE7 = ("target/linux/ar71xx/image/"            "legacy-devices.mk"  "source_target_linux_ar71xx_image____");
@@ -24,7 +24,7 @@ function copy_uje_yun_config {
 	cp $1${UJE1[$3]}${UJE1[$4]} $2${UJE1[$5]}${UJE1[$6]}$7 > /dev/null
 	cp $1${UJE2[$3]}${UJE2[$4]} $2${UJE2[$5]}${UJE2[$6]}$7 > /dev/null
 	cp $1${UJE3[$3]}${UJE3[$4]} $2${UJE3[$5]}${UJE3[$6]}$7 > /dev/null
-	cp $1${UJE4[$3]}${UJE4[$4]} $2${UJE4[$5]}${UJE4[$6]}$7 > /dev/null
+#	cp $1${UJE4[$3]}${UJE4[$4]} $2${UJE4[$5]}${UJE4[$6]}$7 > /dev/null
 	cp $1${UJE5[$3]}${UJE5[$4]} $2${UJE5[$5]}${UJE5[$6]}$7 > /dev/null
 	cp $1${UJE6[$3]}${UJE6[$4]} $2${UJE6[$5]}${UJE6[$6]}$7 > /dev/null
 	cp $1${UJE7[$3]}${UJE7[$4]} $2${UJE7[$5]}${UJE7[$6]}$7 > /dev/null
@@ -53,10 +53,10 @@ if [ ! -e 'SETUP/${UJE3[2]}${UJE3[1]}' ]; then
     echo "ERROR: Missing UJE_YUN file: SETUP/${UJE3[2]}${UJE3[1]}"
 	exit 0
 fi
-if [ ! -e 'SETUP/${UJE4[2]}${UJE4[1]}' ]; then
-    echo "ERROR: Missing UJE_YUN file: SETUP/${UJE4[2]}${UJE4[1]}"
-	exit 0
-fi
+#if [ ! -e 'SETUP/${UJE4[2]}${UJE4[1]}' ]; then
+#    echo "ERROR: Missing UJE_YUN file: SETUP/${UJE4[2]}${UJE4[1]}"
+#	exit 0
+#fi
 if [ ! -e 'SETUP/${UJE5[2]}${UJE5[1]}' ]; then
     echo "ERROR: Missing UJE_YUN file: SETUP/${UJE5[2]}${UJE5[1]}"
 	exit 0
@@ -138,10 +138,10 @@ if [ ! -e '${UJE3[0]}${UJE3[1]}' ]; then
     echo "ERROR: Missing config file: ${UJE3[0]}${UJE3[1]}"
 	exit 0
 fi
-if [ ! -e '${UJE4[0]}${UJE4[1]}' ]; then
-    echo "ERROR: Missing config file: ${UJE4[0]}${UJE4[1]}"
-	exit 0
-fi
+#if [ ! -e '${UJE4[0]}${UJE4[1]}' ]; then
+#    echo "ERROR: Missing config file: ${UJE4[0]}${UJE4[1]}"
+#	exit 0
+#fi
 if [ ! -e '${UJE5[0]}${UJE5[1]}' ]; then
     echo "ERROR: Missing config file: ${UJE5[0]}${UJE5[1]}"
 	exit 0

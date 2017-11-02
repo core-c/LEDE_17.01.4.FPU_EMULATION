@@ -16,7 +16,8 @@ yunCUL:/#
  Compile: VirtualBox, Linux Ubuntu 17.04, oct 5 2017
 
   
- 868MHz CC1101            WiFi (MAX!, Apple Homekit)
+ 868MHz CC1101 (MAX!)     WiFi (MAXLAN, Homekit)
+ ͝ψ͝͝͝͝͝͝͝͝͝͝͝            ͝ψ͝͝
   ▲                        ▲▼
   ╪══AVR════════════╕   ╒═Linux════════════════════
   └► ATmega32u4     |   | AR9331◄──⁞─┬──►FHEM◄─┐
@@ -31,5 +32,5 @@ yunCUL:/#
  └─┘ └─┘└─┴───┴─┘  └─┘  └─┘ └────┴─┘└─┘└───┴────┴───┘
    Yún + CUL + MAX! + MaxLAN + FHEM + Apple Homekit
           ©2017 Frank Peeters & Ron Driessen
-		            fastfrank & core
+                    fastfrank & core
 
