@@ -16,13 +16,13 @@ yunCUL:/#
  Compile: VirtualBox, Linux Ubuntu 17.04, oct 5 2017
 
   
- 868MHz CC1101 (MAX!)     WiFi (MAXLAN, Homekit)
- ͝ψ͝͝͝͝͝͝͝͝͝͝͝            ͝ψ͝͝
-  ▲                        ▲▼
-  ╪══AVR════════════╕   ╒═Linux════════════════════
-  └► ATmega32u4     |   | AR9331◄──⁞─┬──►FHEM◄─┐
-  …………▲▼…….  |      |   |  |       ⁞ |   HomeBridge
-   yunCUL ⁞ Serial1 |◄-►| ttyATH0  ⁞ └►NodeJS◄─┘
+ 868MHz CC1101 (MAX!)        (MAXLAN, Homekit) WiFi
+ ͝ψ͝͝͝͝͝͝͝͝͝͝͝                                 ͝ψ͝͝
+  ▲                                             ▲▼
+  ╪══AVR═════════════════╕   ╒════════════════Linux══
+  └► ATmega32u4──Serial1─|◄─►|─ttyATH0────────AR9331
+  …………▲▼……………………………………………|   |…………………………………………▲▼……………
+     yunCUL              |   | FHEM NodeJS HomeBridge 
 
  ┌───┬─┐┌─┬───┬──┐┌──┐┌─┐ ┌─┐          ┌───┬─┐┌─┬─┐
  │ ┌─┤ ││ │ ┌─┤  └┘  ││ └─┘ │ //       │ ┌─┤ ││ │ │
