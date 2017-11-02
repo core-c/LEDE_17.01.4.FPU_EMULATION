@@ -10,11 +10,13 @@ LEDE 17.01.4 with FPU_EMULATION.
 ## Creating a cross-compiled custom firmware
 
 ####Create and enter your LEDE folder
-This will become the location where you want the LEDE source-code placed.
 ```
+
   mkdir /usr/src/LEDE
   cd /usr/src/LEDE
+
 ```
+This will become the location where you want the LEDE source-code placed.
 
 
 ####Copy the ***SETUP*** folder to your LEDE folder
@@ -72,8 +74,11 @@ This will become the location where you want the LEDE source-code placed.
 
 
 ####Check your freshly created, cross-compiled firmware
-On a succesful compilation you will find the firmware files at this location:
-  ***path_to_your_LEDE/source/bin/targets/ar71xx/generic***
+On a succesful compile you will find the firmware files at this location:
+***path_to_your_LEDE/source/bin/targets/ar71xx/generic***
+```
+  ls /usr/src/LEDE/source/bin/targets/ar71xx/generic/*
+```
 
 
 ## Flashing the firmware
@@ -86,6 +91,7 @@ in order to be able to   ...........blahblahetcetc
   
 Here's an example of the UJE_YUN flash layout:
 ```
+
              ____________________ ____________________ ____________________ ____________________ ____________________ 
             |                    |                    |                    |                    |                    |
             | u-boot             | u-boot-env         | kernel             | rootfs             |   art              |
@@ -102,6 +108,7 @@ Here's an example of the UJE_YUN flash layout:
    FW flash |                    |                    | erase  .  +120000  | erase  .  +E80000  |                    |
             |                    |                    | cp.b . . filesize  | cp.b . . filesize  |                    |
             |____________________|____________________|____________________|____________________|____________________|
+			
 ```
 
 
