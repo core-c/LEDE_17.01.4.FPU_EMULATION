@@ -9,8 +9,8 @@ LEDE 17.01.4 with FPU_EMULATION.
 
 ## Creating a cross-compiled custom firmware
 
-####Create and enter your LEDE folder,
-the location where you want the LEDE source-code placed.
+####Create and enter your LEDE folder
+This will become the location where you want the LEDE source-code placed.
 ```
   mkdir /usr/src/LEDE
   cd /usr/src/LEDE
@@ -21,7 +21,7 @@ the location where you want the LEDE source-code placed.
 ```
   cp -R /from/here/SETUP .
 ```
->  Example: If your path_to_LEDE is ***/usr/src/LEDE***
+>  Example: If your *path_to_*LEDE is ***/usr/src/LEDE***
 >           you will end up with this: ***/usr/src/LEDE/SETUP***
 
 
@@ -85,6 +85,7 @@ in order to be able to   ...........blahblahetcetc
   
   
 Here's an example of the UJE_YUN flash layout:
+```
               ____________________ ____________________ ____________________ ____________________ ____________________ 
             |                    |                    |                    |                    |                    |
             | u-boot             | u-boot-env         | kernel             | rootfs             |   art              |
@@ -101,3 +102,7 @@ Here's an example of the UJE_YUN flash layout:
    FW flash |                    |                    | erase  .  +120000  | erase  .  +E80000  |                    |
             |                    |                    | cp.b . . filesize  | cp.b . . filesize  |                    |
             |____________________|____________________|____________________|____________________|____________________|
+```
+
+
+
