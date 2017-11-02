@@ -1,8 +1,22 @@
 
+copy de SETUP directory naar de locatie waarin de LEDE-build komt, bv. /usr/src/LEDE_v17.04.1
+je krijgt dan een /usr/src/LEDE_v17.04.1/SETUP/ met daarin alle configs en patches om een
+vers gedownloade LEDE 17.01.4 te kunnen compileren met een FPU_EMULATION kernel,
+en een werkende firmware & sysupgrade te produceren.
 
-nog niet getest!!!!
+copy de build.sh file naar de hoofd directory
+(waarin de LEDE source komt/is: in ons geval "/usr/src/LEDE_v17.04.1"),
+en run ./build.sh
 
-   * copy de build.sh file naar de 'source' directory, en run ./build.sh
+
+alle stappen van de crosscompile staan hieronder vermeld.
+ik heb een build.sh script gemaakt wat alles zou moeten automatiseren, maar niets is getest.
+build.sh maakt zelf backups van: de huidige config files, en van een uiteindelijk geslaagde compile config.
+
+
+!!!LET OP
+build.sh is nog niet getest!!!!
+
    
    * opties voor build.sh:
           ./build.sh
@@ -16,7 +30,13 @@ build.sh doet alles.. /zou_moeten_doen:
    * copy UJE_YUN config files naar de juiste locaties
    * compileer de UJE_YUN firmware
    * clean up wat onnodige bestanden
+
+
+
+
 		  
+#======================================================================================
+# Dit zijn de stappen om handmatig een cross-compile te maken
 #======================================================================================
 
 # de git LEDE source code downloaden
@@ -24,8 +44,9 @@ build.sh doet alles.. /zou_moeten_doen:
 mkdir LEDE_v17.04.1
 cd LEDE_v17.04.1
 git clone --depth=1 --branch v17.01.4 --single-branch https://git.lede-project.org/source.git
-cd source
 
+
+cd source
 
 
 
@@ -36,17 +57,19 @@ mkdir files
 
 
 
+# copy de bestanden (met configuratie aanpassingen), uit de ../SETUP/ directory. naar hun locaties:
 
-# copy 4 bestanden (met aanpassingen van configuratie bestanden), uit de ../SETUP/ directory. naar hun locaties:
-# source____.config                                ->   source/.config
-# source_target_linux_ar71xx____config-4.4         ->   source/target/linux/ar71xx/config-4.4
-# source_target_linux_ar71xx_image____generic.mk   ->   source/target/linux/ar71xx/image/generic.mk
-# source_target_linux_ar71xx_image____legacy.mk    ->   source/target/linux/ar71xx/image/legacy.mk
-
-cp ../SETUP/source____.config ./.config
+cp ../SETUP/source____.config .config
+cp ../SETUP/source____feeds.conf.default feeds.conf.default
+cp ../SETUP/source_target_linux_ar7_image____Makefile target/linux/ar7/image/Makefile
 cp ../SETUP/source_target_linux_ar71xx____config-4.4 target/linux/ar71xx/config-4.4
+cp ../SETUP/source_target_linux_ar71xx_generic_profiles____uje_yun.mk target/linux/ar71xx/generic/profiles/uje_yun.mk
 cp ../SETUP/source_target_linux_ar71xx_image____generic.mk target/linux/ar71xx/image/generic.mk
 cp ../SETUP/source_target_linux_ar71xx_image____legacy.mk target/linux/ar71xx/image/legacy.mk
+cp ../SETUP/source_target_linux_ar71xx_image____legacy-devices.mk target/linux/ar71xx/image/legacy-devices.mk
+
+# volgens mij zijn deze 2 niet eens nodig: Makefile & uje_yun.mk
+# Die 2 waren tests om een goede luci-sysupgrade te krijgen.. maar dat gaat toch nog steeds niet.
 
 
 
@@ -59,59 +82,8 @@ make menuconfig
 make
 
 
-# de vers ge-cross-compileerde staat nu in:  bin/...
+# de vers ge-cross-compileerde staat nu in:  <path_to>LEDE_v17.04.1/source/bin/targets/ar71xx/generic/*
 
-
-
-
-----------------------------------------------------------------------------------------------------
-dit zijn de veranderingen aan .config om 'm succesvol compilerend te krijgen:
-----------------------------------------------------------------------------------------------------
-
-
-make kernel_menuconfig
-
-* Machine selection -->: op 1 na alle profiles uitschakelen, alleen "Arduino Yun" selecteren
-* Kernel type: MIPS FPU EMULATOR selecteren..   daar ging het allemaal om.
-* Bus options (PCI, PCMCIA, EISA, ISA, TC) -->: PCCard (PCMCIA,Cardbus) selecteren
-
-
-
-dan komt..
-
-
-
-make menuconfig
-
-* Target Profile: op 1 na alle profiles uitschakelen, alleen "Arduino Yun" selecteren
-* Advanced configuration options (for developers): Target Options --> selecteren
-    controleer de sub-opties..
-* Advanced configuration options (for developers): Toolchain Options --> selecteren
-    Binutils Version: selecteer 2.27
-    GCC compiler Version: selecteer gcc 5.x
-
-
-
-
-
-make
-
-
-
-
-* kernel modules --> Wireless drivers: kmod_mac80211_hwsim uitschakelen
-* kernel modules --> Network support --> kmod_wireguard uitschakelen
-* network --> WWan --> uitschakelen: comgt      comgt-directip      comgt-ncm
-
-
-
-
-
-aanpassen source/target/linux/ar71xx/config-4.4    :
-* toevoegen: CONFIG_MIPS_FPU_EMULATOR=y
-* aanpassen: CONFIG_CMDLINE="rootfstype=squashfs,jffs2 noinitrd"
-
-
-
-
-
+# De losse kernel en rootfs flashen, kan pas nadat een nieuwere bootloader, u-boot, is geflashed.
+# De nieuwere bootloader is nodig omdat de standaard Yun bootloader geen "saveenv" command kent,
+# waardoor het niet mogelijk is om de u-boot-env (environment variables) aan te passen (en op te slaan).
