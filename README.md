@@ -73,7 +73,7 @@ This will become the location where you want the LEDE source-code placed.
 
 ####Check your freshly created, cross-compiled firmware
 On a succesful compilation you will find the firmware files at this location:
-#  ***<path_to_your_LEDE>/source/bin/targets/ar71xx/generic***
+  *** path_to_your_LEDE/source/bin/targets/ar71xx/generic ***
 
 
 ## Flashing the firmware
