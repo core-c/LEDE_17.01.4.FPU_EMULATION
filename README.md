@@ -93,10 +93,9 @@ On a succesful compile you will find the firmware files at this location:
 ***path_to_your_LEDE/source/bin/targets/ar71xx/generic***
 ```
 
-        ls /usr/src/LEDE/source/bin/targets/ar71xx/generic/*
+        ls /usr/src/LEDE/source/bin/targets/ar71xx/generic
 
 ```
-:+1:
 
 
 
