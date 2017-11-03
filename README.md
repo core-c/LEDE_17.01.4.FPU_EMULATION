@@ -2,27 +2,27 @@
 
 ## Description
 
-Adapted for the Arduino Yún.
-U-boot 1.1.5 with 'saveenv' support.
-LEDE 17.01.4 with FPU_EMULATION.
+- Firmware specially adapted for the Arduino Yún.
+- U-boot 1.1.5 Bootloader, with 'saveenv' support.
+- LEDE 17.01.4, with FPU_EMULATION (needed for NodeJS).
 
 
 ## Creating a cross-compiled custom firmware
 
-####Create and enter your LEDE folder
-```
-
-  mkdir /usr/src/LEDE
-  cd /usr/src/LEDE
-
-```
+####Create and enter your ***LEDE*** folder
 This will become the location where you want the LEDE source-code placed.
-
-
-####Copy the ***SETUP*** folder to your LEDE folder
 ```
 
-  cp -R /from/here/SETUP .
+        mkdir /usr/src/LEDE
+        cd /usr/src/LEDE
+
+```
+
+
+####Copy the ***SETUP*** folder to your ***LEDE*** folder
+```
+
+        cp -R /from/here/SETUP .
 
 ```
 >  Example: If your *path_to_*LEDE is ***/usr/src/LEDE***
@@ -32,16 +32,16 @@ This will become the location where you want the LEDE source-code placed.
 ####Download the LEDE 17.01.4 source-code
 ```
 
-  git clone --depth=1 --branch v17.01.4 --single-branch https://git.lede-project.org/source.git
+        git clone --depth=1 --branch v17.01.4 --single-branch https://git.lede-project.org/source.git
 
 ```
 >  Now you should have a ***source*** folder created.
 
 
-####Enter the LEDE ***source*** folder
+####Enter the ***LEDE source*** folder
 ```
 
-  cd source
+        cd source
 
 ```
 
@@ -49,7 +49,7 @@ This will become the location where you want the LEDE source-code placed.
 ####Copy the Yún specific ***SETUP files*** folder to your ***LEDE source*** folder
 ```
 
-  cp -R ../SETUP/files .
+        cp -R ../SETUP/files .
 
 ```
 
@@ -57,13 +57,13 @@ This will become the location where you want the LEDE source-code placed.
 ####Overwrite existing LEDE configuration files with the UJE_YUN config files
 ```
 
-  cp ../SETUP/source____.config .config
-  cp ../SETUP/source____feeds.conf.default feeds.conf.default
-  cp ../SETUP/source_target_linux_ar7_image____Makefile target/linux/ar7/image/Makefile
-  cp ../SETUP/source_target_linux_ar71xx____config-4.4 target/linux/ar71xx/config-4.4
-  cp ../SETUP/source_target_linux_ar71xx_image____generic.mk target/linux/ar71xx/image/generic.mk
-  cp ../SETUP/source_target_linux_ar71xx_image____legacy.mk target/linux/ar71xx/image/legacy.mk
-  cp ../SETUP/source_target_linux_ar71xx_image____legacy-devices.mk target/linux/ar71xx/image/legacy-devices.mk
+        cp ../SETUP/source____.config .config
+        cp ../SETUP/source____feeds.conf.default feeds.conf.default
+        cp ../SETUP/source_target_linux_ar7_image____Makefile target/linux/ar7/image/Makefile
+        cp ../SETUP/source_target_linux_ar71xx____config-4.4 target/linux/ar71xx/config-4.4
+        cp ../SETUP/source_target_linux_ar71xx_image____generic.mk target/linux/ar71xx/image/generic.mk
+        cp ../SETUP/source_target_linux_ar71xx_image____legacy.mk target/linux/ar71xx/image/legacy.mk
+        cp ../SETUP/source_target_linux_ar71xx_image____legacy-devices.mk target/linux/ar71xx/image/legacy-devices.mk
 
 ```
 
@@ -71,8 +71,8 @@ This will become the location where you want the LEDE source-code placed.
 ####Take a look at the UJE_YUN configuration settings
 ```
 
-  make kernel_menuconfig
-  make menuconfig
+        make kernel_menuconfig
+        make menuconfig
 
 ```
 >  When you exit kernel_menuconfig and menuconfig,
@@ -82,7 +82,7 @@ This will become the location where you want the LEDE source-code placed.
 ####Now it is time to perform the cross-compile
 ```
 
-  make
+        make
 
 ```
 
@@ -92,7 +92,7 @@ On a succesful compile you will find the firmware files at this location:
 ***path_to_your_LEDE/source/bin/targets/ar71xx/generic***
 ```
 
-  ls /usr/src/LEDE/source/bin/targets/ar71xx/generic/*
+        ls /usr/src/LEDE/source/bin/targets/ar71xx/generic/*
 
 ```
 
@@ -105,7 +105,13 @@ in order to be able to   ...........blahblahetcetc
     TODO:  finish this text :)
   
   
-Here's an example of the UJE_YUN flash layout:
+We dropped the use of the NVRAM partition since it it not used at all on a Yún.
+The resulting extra 64k memory raise the maximum size of the UJE_YUN firmware to 16000k.
+We also decided to break with the Yún tradition of firmware memory arrangement.
+The UJE_YUN kernel always boots from memory address 0x9f050000.
+
+Here's an example of an UJE_YUN flash layout:
+>  Note: This is just an example. The numbers may vary with your own compiled firmware sizes.
 ```
 
                     ____________________ ____________________ ____________________ ____________________ ____________________ 
@@ -129,3 +135,5 @@ Here's an example of the UJE_YUN flash layout:
 
 
 
+TODO: * explain well.. any clue is important to a developer. especially if they don't yet quite know how it all works..
+      * add references/links to the articles/people who helped us!
