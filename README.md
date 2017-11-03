@@ -123,8 +123,14 @@ The UJE_YUN firmware maximum address space is 16000k. The firmware consists of a
 You can however use any size kernel. Say for example, you have compiled a 2048k kernel. This means that your rootfs can have a maximum size of 16000k - 2048k = 13952k. The individual sizes of kernel & rootfs do not matter: It's the combined size of the firmware that's important. In the end, all must fit in the 16M flash of the Atheros AR9330.
 
 ####Preparing for a firmware flash
-- run ***tftp server*** on a host computer, providing the firmware files to flash.
-- in u-boot set ***serverip*** and ***ipaddr***
+- Connect the Yún via the ethernet with a cable
+- Run a ***tftp server*** on a host computer, providing the firmware files to flash
+- In u-boot set ***serverip*** and ***ipaddr***. Suppose your host uses ip-address 192.168.178.100, and your Yún uses ip-address 192.168.178.107, you need to do:
+
+```
+  ubootprompt>setenv serverip 192.168.178.100
+  ubootprompt>setenv ipaddr 192.168.178.107
+```
 
 ####u-boot flash partition
 The bootloader, named u-boot, is very important. It functions like the BIOS of a PC. Without a working bootloader, the Yún will not power up, and will appear bricked.
@@ -141,8 +147,11 @@ The newer bootloader u-boot 1.1.5 supports the ***saveenv*** command (and lots m
 ```
 > You need to reboot your Yún.
 
+Upgrading the bootloader is not part of a firmware flash.
+Once you upgraded the Yún with a new bootloader, you do ***not*** have to do it again at every next firmware flash.
+
 ***BE VERY CAREFUL WHEN ERASING AND/OR FLASHING TO u-boot FLASH MEMORY SPACE***
-A Yún may appear bricked, but many times you can bring it back to a working state.
+If it goes wrong, (for example if you flash the bootloader space with some wrong file), the Yún may appear bricked, but many times you can bring it back to a working state.
 You can revive a "bricked" Yún (even if it doesn't even show up in the Arduino IDE with a COM-port anymore). You would use another ***Arduino as ISP*** to program the Yún with a new bootloader, and later flash a working firmware into the Yún.
 
 ####Prepare the u-boot environment settings before flashing UJE_YUN firmware
