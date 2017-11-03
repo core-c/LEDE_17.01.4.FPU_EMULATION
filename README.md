@@ -11,13 +11,13 @@
 ## Creating a cross-compiled custom firmware
 
 ####Create and enter your ***LEDE*** folder
-This will become the location where you want the LEDE source-code placed.
 ```
 
         mkdir /usr/src/LEDE
         cd /usr/src/LEDE
 
 ```
+This will become the location where you want the LEDE source-code placed.
 
 
 ####Copy the ***SETUP*** folder to your ***LEDE*** folder
