@@ -15,6 +15,10 @@
 
 ## Creating a cross-compiled custom firmware
 
+####The host computer
+A cross-compile is done on a Linux computer (not the Yún).
+We ran ***Linux Debian*** as a virtual machine (on a fast Apple computer).
+
 ####Create and enter your ***LEDE*** folder
 ```
 
@@ -243,6 +247,8 @@ If you want to flash the art-partition, you can do it like this:
 ```
 >  Note: This is just an example. The numbers may vary with your own compiled firmware sizes.
 
+
+##Links
 
 
 
