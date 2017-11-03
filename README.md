@@ -1,5 +1,5 @@
 # UJE_YUN firmware 17.01.4.FPU_EMULATION
-
+________
 ## Description
 
 - Firmware specially adapted for the Arduino Yún.
@@ -7,6 +7,7 @@
 - LEDE 17.01.4, with FPU_EMULATION (needed for NodeJS).
 
 
+________
 ## Creating a cross-compiled custom firmware
 
 ####Create and enter your ***LEDE*** folder
@@ -95,8 +96,10 @@ On a succesful compile you will find the firmware files at this location:
         ls /usr/src/LEDE/source/bin/targets/ar71xx/generic/*
 
 ```
+:+1:
 
 
+________
 ## Flashing the firmware
 
 Depending on the size of your compiled kernel & rootfs/squash,
@@ -137,3 +140,6 @@ Here's an example of an UJE_YUN flash layout:
 
 TODO: * explain well.. any clue is important to a developer. especially if they don't yet quite know how it all works..
       * add references/links to the articles/people who helped us!
+
+
+
