@@ -149,6 +149,7 @@ The newer bootloader u-boot 1.1.5 supports the ***saveenv*** command (and lots m
   ubootprompt>cp.b $fileaddr 0x9f000000 $filesize;
   ubootprompt>erase 0x9f040000 +10000;
 ```
+> After flashing a new u-boot, also allocate the u-boot-env.
 > You need to reboot your Yún.
 
 Upgrading the bootloader is not part of a firmware flash.
