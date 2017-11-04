@@ -1,8 +1,8 @@
-# UJE_YUN firmware 17.01.4.FPU_EMULATION
+#UJE_YUN firmware 17.01.4.FPU_EMULATION
 
 
 
-## Description
+##Description
 
 - Firmware specially adapted for the Arduino Yún.
 - U-boot 1.1.5 Bootloader, with 'saveenv' support.
@@ -13,7 +13,7 @@
 
 
 
-## Creating a cross-compiled custom firmware
+##Creating a cross-compiled custom firmware
 
 ####The host computer
 A cross-compile is done on a Linux computer (not the Yún).
@@ -113,7 +113,7 @@ On a succesful compile you will find the firmware files at this location:
 
 
 
-## Flashing the firmware
+# Flashing the firmware
 
 ####UJE_YUN changes to original LEDE firmware
 We dropped the use of the NVRAM partition since it it not used at all on a Yún. The resulting extra 64k memory raise the maximum size of the UJE_YUN firmware to 16000k.
@@ -249,6 +249,18 @@ If you want to flash the art-partition, you can do it like this:
 
 
 ##Links
+
+[LEDE 17.01.4 source code](https://github.com/lede-project/source/tree/v17.01.4)
+[LEDE downloads](http://downloads.lede-project.org/)
+[Yun cheat sheet](http://www.egrep.jp/wiki/index.php/OpenWrt_for_Arduino_Yun_cheat_sheet)
+[nxhack](https://github.com/nxhack)
+[OpenWRT flash layout](https://wiki.openwrt.org/doc/techref/flash.layout)
+[OpenWRT cross-compile](https://wiki.openwrt.org/doc/devel/crosscompile)
+[OpenWRT build](https://wiki.openwrt.org/doc/howto/build)
+[OpenWRT extroot](https://wiki.openwrt.org/doc/howto/extroot)
+[u-boot manual](http://ftp1.digi.com/support/documentation/90000852_K.pdf)
+[Kernel 1280 requirement](https://forum.lede-project.org/t/ardiuno-yun-kernel-size-under-1280k-requirement/3948)
+[Bootloader flashing "Arduino as ISP"](https://learn.sparkfun.com/tutorials/installing-an-arduino-bootloader)
 
 
 
