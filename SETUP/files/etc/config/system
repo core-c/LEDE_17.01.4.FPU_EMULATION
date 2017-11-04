@@ -30,16 +30,17 @@ config button
 	option handler '/usr/bin/wifi-reset-button-released'
 
 config led
-	option name 'WAN'
+	option name 'LinkUp'
 	option sysfs 'arduino:blue:wlan'
-	option default '1'
-	option trigger 'default-on'
-
-config led
-	option name 'USB'
-	option sysfs 'arduino:white:usb'
 	option default '1'
 	option trigger 'netdev'
 	option dev 'wlan0'
-	option mode 'rx'
+	option mode 'link'
 
+config led
+	option sysfs 'arduino:white:usb'
+	option default '1'
+	option trigger 'netdev'
+	option dev 'eth1'
+	option mode 'tx'
+	option name 'eth1tx'

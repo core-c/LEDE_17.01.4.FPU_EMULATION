@@ -78,7 +78,7 @@ This will become the location where you want the LEDE source-code placed.
 ```
 
 
-####Take a look at the UJE_YUN configuration settings
+####The UJE_YUN configuration settings
 ```
 
         make kernel_menuconfig

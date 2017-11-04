@@ -197,7 +197,7 @@ fi
 
 # PACKAGE FEEDS
 echo -en "${MY_COL}Setup package feeds..${DEF_COL}"
-if [ ${vFirstTime} -eq true ]; then
+if [ ${FIRST_TIME} -eq true ]; then
     # FEEDS
     ./scripts/feeds uninstall -a
     rm -rf feeds > /dev/null
@@ -212,7 +212,7 @@ if [ ${vFirstTime} -eq true ]; then
     rm  ./package/feeds/packages/node-serialport > /dev/null
 
     # INSTALL CUSTOM UJE_YUN NODE PACKAGES
-    #./scripts/feeds install -a -p node
+    ./scripts/feeds install -a -p nxhack_node
 
     # ik weet nog niet wat dit doet... checken c
     make oldconfig

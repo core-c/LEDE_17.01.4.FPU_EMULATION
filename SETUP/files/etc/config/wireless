@@ -9,7 +9,7 @@ config wifi-device 'radio0'
 	list ht_capab 'DSSS_CCK-40'
 	option channel '1'
 	option hwmode '11g'
-	option country 'US'
+	option country 'nl'
 	# REMOVE THIS LINE TO ENABLE WIFI:
 	# option disabled '1'
 
