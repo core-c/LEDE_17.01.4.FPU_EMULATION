@@ -212,7 +212,7 @@ if [ ${FIRST_TIME} -eq true ]; then
     rm  ./package/feeds/packages/node-serialport > /dev/null
 
     # INSTALL CUSTOM UJE_YUN NODE PACKAGES
-    ./scripts/feeds install -a -p nxhack_node
+    ./scripts/feeds install -a -p node
 
     # ik weet nog niet wat dit doet... checken c
     make oldconfig

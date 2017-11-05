@@ -2,4 +2,4 @@ src-git lede_packages https://git.lede-project.org/feed/packages.git
 src-git lede_luci https://git.lede-project.org/project/luci.git
 src-git lede_routing https://git.lede-project.org/feed/routing.git
 src-git lede_telephony https://git.lede-project.org/feed/telephony.git
-src-git nxhack_node https://github.com/nxhack/openwrt-node-packages.git
+src-git node https://github.com/nxhack/openwrt-node-packages.git

@@ -11,3 +11,24 @@ config global 'automount'
 	option from_fstab '1'
 	option anon_mount '1'
 
+######################################################
+# UJE_YUN SDcard has 3 partitions:                   #
+#   sda1 vfat,  sda2 swap,  sda3 ext4 overlay        #
+######################################################
+#config mount
+#	option uuid '60BB-F3AE'
+#	option fstype 'vfat'
+#	option target '/mnt/sda1'
+#	option enabled '1'
+#
+#config swap
+#	option uuid '5c6555cf-9c9e-4dde-8336-28cbe183a9c1'
+#	option device '/dev/sda2'
+#	option enabled '1'
+#
+#config mount
+#	option target '/overlay'
+#	option uuid '88341808-f831-4b03-9f34-64e6f867ea39'
+#	option fstype 'ext4'
+#	option enabled_fsck '1'
+#	option enabled '1'

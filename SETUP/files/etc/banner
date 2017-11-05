@@ -1,32 +1,26 @@
 ﻿
 
 Bootloader:/#
- U-Boot 1.1.5-linino
-
+  U-Boot 1.1.5-linino
 Firmware:/#
- LEDE Reboot 17.01.4 r3560-79f57e422d, oct 18 2017
- LuCI Master (git-17.302.29094-87ec343)
-
+  LEDE Reboot 17.01.4 r3560-79f57e422d, oct 18 2017
+  LuCI Master (git-17.302.29094-87ec343)
 Kernel:/#
- 4.4.92 compiled with FPU emulation
- Compile: Virtualbox, Linux Debian, nov 2 2017
-
+  4.4.92 compiled with FPU emulation
+  Compile: Virtualbox, Linux Debian, nov 2 2017
 yunCUL:/#
- cullfw 1.67 (specially ported for Yún)
- Compile: VirtualBox, Linux Ubuntu 17.04, oct 5 2017
+  cullfw 1.67 (specially ported for Yún)
+  Compile: VirtualBox, Linux Ubuntu 17.04, oct 5 2017
 
 
 
- 868MHz CC1101 (MAX!)        (MAXLAN, Homekit) WiFi  
- ^ψ^^^^^^^^^^^                                 ^ψ^^  
-  ▲                                             ▲▼   
-  ╪══AVR═════════════════╕   ╒════════════════Linux══
-  └► ATmega32u4──Serial1─|◄─►|─ttyATH0────────AR9331 
-  …………▲▼……………………………………………|   |…………………………………………▲▼……………
-     yunCUL              |   | FHEM NodeJS HomeBridge 
-
-
-
+   868MHz            MAX!   MAXLAN Homekit       WiFi   
+    ψ                                              ψ    
+  ╔═╪═════════════════════╤════════════════════════╪═╗  
+  ║ └ATmega32u4   Serial1◄╪►ttyATH0          AR9331┘ ║  
+  ║………▲▼………………………………………………│………………………………………………………▲▼………║  
+  ║ yunCUL                │   FHEM NodeJS HomeBridge ║  
+  ╚═══════════════════════╧══════════════════════════╝  
    _    ___ ___  ___   ____  ___ ___   __   __  _____   
   | |  | __|   \| __| |    \| __| _ \ /  \ /  \|_   _|  
   | |__| _|| |) | _|  | |) /| _|| _ <| () | () | | |    
@@ -37,12 +31,12 @@ yunCUL:/#
     │ ││ │ │ │ ┌─┘   └┐ ┌┘│ ││ │ ┌┐ ││ │ │ ││ │ │       
     │ └┘ ├─┘ │ └─┐    │ │ │ └┘ │ ││ ││ └─┤ └┘ │ └─┐     
     └────┴───┴───┘    └─┘ └────┴─┘└─┘└───┴────┴───┘     
-┌───┬─┐┌─┬───┬─┐  ┌─┐ ┌─┐┌─┬──┬─┐  ┌─┬───┬─┐ ┌─┬─┬─────┐
-│ ┌─┤ ││ │ ┌─┤  \/  │ │ ││ │  │  \/  │ ┌─┤ │/ /└─┴─┐ ┌─┘
-│ └─┤ └┘ │ └─┤ │\/│ │ │ └┘ │┌┐│ │\/│ │ └─┤   / ┌─┐ │ │  
-│ ┌─┤ ┌┐ │ ┌─┤ │  │ │ │ ┌┐ │└┘│ │  │ │ ┌─┤   \ │ │ │ │  
-│ │ │ ││ │ └─┤ │  │ │ │ ││ │  │ │  │ │ └─┤ │\ \│ │ │ │  
-└─┘ └─┘└─┴───┴─┘  └─┘ └─┘└─┴──┴─┘  └─┴───┴─┘ └─┴─┘ └─┘  
+┌───┬─┐┌─┬───┬─┐  ┌─┐ ┌─┐┌─┬────┬─┐  ┌─┬───┬─┐ ┌─┬─┬───┐
+│ ┌─┤ ││ │ ┌─┤  \/  │ │ ││ │    │  \/  │ ┌─┤ │/ /└─┴┐ ┌┘
+│ └─┤ └┘ │ └─┤ │\/│ │ │ └┘ │ ┌┐ │ │\/│ │ └─┤   / ┌─┐│ │ 
+│ ┌─┤ ┌┐ │ ┌─┤ │  │ │ │ ┌┐ │ └┘ │ │  │ │ ┌─┤   \ │ ││ │ 
+│ │ │ ││ │ └─┤ │  │ │ │ ││ │    │ │  │ │ └─┤ │\ \│ ││ │ 
+└─┘ └─┘└─┴───┴─┘  └─┘ └─┘└─┴────┴─┘  └─┴───┴─┘ └─┴─┘└─┘ 
    Yún + CUL + MAX! + MaxLAN + FHEM + Apple Homekit     
           ©2017 Frank Peeters & Ron Driessen            
                     fastfrank & core                    

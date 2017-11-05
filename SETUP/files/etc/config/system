@@ -34,13 +34,13 @@ config led
 	option sysfs 'arduino:blue:wlan'
 	option default '1'
 	option trigger 'netdev'
-	option dev 'wlan0'
 	option mode 'link'
+	option dev 'eth1'
 
 config led
+	option name 'LinkTx'
 	option sysfs 'arduino:white:usb'
 	option default '1'
 	option trigger 'netdev'
 	option dev 'eth1'
 	option mode 'tx'
-	option name 'eth1tx'
