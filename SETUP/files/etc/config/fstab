@@ -17,25 +17,22 @@ config global 'automount'
 
 ######################################################
 # UJE_YUN SDcard has 3 partitions:                   #
-#   sda1 vfat,  sda2 ext4 overlay,  sda3 swap        #
+#   sda1 ext4 overlay,  sda2 vfat,  sda3 swap        #
 ######################################################
 #config mount
-#	option enabled '1'
-#	option device '/dev/sda2'
+#	option device '/dev/sda1'
 #	option target '/overlay'
 #	option fstype 'ext4'
-#	option options '/'
-#	option is_rootfs '1'
 #	option options 'rw,sync,noatime,nodiratime'
-#	option delay_root '5'
+#	option enabled_fsck '0'
+#	option enabled '1'
 #
 #config mount
-#	option enabled '1'
-#	option device '/dev/sda1'
+#	option device '/dev/sda2'
 #	option target '/mnt/sdafat'
 #	option fstype 'vfat'
+#	option enabled '1'
 #
 #config swap
-#	option enabled '1'
 #	option device '/dev/sda3'
-
+#	option enabled '1'
