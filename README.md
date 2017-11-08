@@ -4,7 +4,6 @@
 
 ##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Description</div>
 
-|            |             |                                   |
 |:-----------|:------------|:----------------------------------|
 | Firmware   | UJE_YUN     | for Arduino Yún                   |
 | U-boot     | 1.1.5       | with 'saveenv' support            |
