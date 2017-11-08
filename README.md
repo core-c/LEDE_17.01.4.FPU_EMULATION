@@ -7,7 +7,8 @@
 - Firmware specially adapted for the Arduino Yún.
 - U-boot 1.1.5 Bootloader, with 'saveenv' support.
 - LEDE 17.01.4, with FPU_EMULATION (needed for NodeJS).
-
+- NodeJS 9.0.0
+- npm
 
 
 
@@ -150,17 +151,27 @@ The UJE_YUN flash memory arrangement looks like this:
 The UJE_YUN firmware maximum address space is 16000k. The firmware consists of a kernel and a rootfs. The combined size of kernel+rootfs can never exceed 16000k.
 You can however use any size kernel. Say for example, you have compiled a 2048k kernel. This means that your rootfs can have a maximum size of 16000k - 2048k = 13952k. The individual sizes of kernel & rootfs do not matter: It's the combined size of the firmware that's important. In the end, all must fit in the 16M flash of the Atheros AR9330.
 
+####Invoke the bootloader
+- Connect your Yún to the host computer with a USB-cable
+- Upload the Arduino sketch: ***YunSerialTerminal***
+- Open the Arduino IDE's ***Serial monitor*** on the COM-port that connects to the Yún
+- Push the ***YUN RESET*** button on the Yún (the one closest to the LEDs)
+- Quickly follow up the instructions that the bootloader displays in the serial monitor
+> Insctructions are usually typing in some short text to the COM-port, like 'ard' or 'lin'.
+- The bootloader will show you its command-prompt
+
+
 ####Preparing for a firmware flash
 - Connect the Yún via the ethernet with a cable
 - Run a ***tftp server*** on a host computer, providing the firmware files to flash
 - In u-boot set ***serverip*** and ***ipaddr***. Suppose your host uses ip-address 192.168.178.100, and your Yún uses ip-address 192.168.178.107, you need to do:
 
 ```
-  ubootprompt>setenv serverip 192.168.178.100
-  ubootprompt>setenv ipaddr 192.168.178.107
+  ar7240>setenv serverip 192.168.178.100
+  ar7240>setenv ipaddr 192.168.178.107
 ```
 
-####u-boot flash partition
+####u-boot & u-boot-env flash partitions
 The bootloader, named u-boot, is very important. It functions like the BIOS of a PC. Without a working bootloader, the Yún will not power up, and will appear bricked.
 Traditionally 256k flash memory is allocated for the bootloader. While the filesize of the (newer) u-boot 1.1.5 is 179k, always allocate 256k of flash memory when flashing a new bootloader.
 The original Yún bootloader (u-boot 1.1.4) does not permit someone to adjust the environment settings. Therefore it is impossible to flash firmware that is not compatible with the original u-boot environment. In other words: If your kernel ***or*** rootfs size exceeds the original Yún allocated space, you can not flash your firmware because it would not fit.
@@ -168,12 +179,12 @@ The original Yún sizes are set to: 14656k(rootfs),1280k(kernel).
 The newer bootloader u-boot 1.1.5 supports the ***saveenv*** command (and lots more). We need to upgrade an original Yún with this newer bootloader. Here's how to do it:
 
 ```
-  ubootprompt>tftp 0x80060000 u-boot-linino-yun.bin;
-  ubootprompt>erase 0x9f000000 +40000;
-  ubootprompt>cp.b $fileaddr 0x9f000000 $filesize;
-  ubootprompt>erase 0x9f040000 +10000;
+  ar7240>tftp 0x80060000 u-boot-linino-yun.bin;
+  ar7240>erase 0x9f000000 +40000;
+  ar7240>cp.b $fileaddr 0x9f000000 $filesize;
+  ar7240>erase 0x9f040000 +10000;
 ```
-> After flashing a new u-boot, also allocate the u-boot-env.
+> After flashing a new u-boot, also allocate the u-boot-env, using that last command which erases 64k starting from 0x9f040000.
 > You need to reboot your Yún.
 
 Upgrading the bootloader is not part of a firmware flash.
@@ -189,9 +200,9 @@ When the Yún boots, you can see the MTD (Memory Technology Device) information 
 To change the u-boot settings for our UJE_YUN example, we would execute the following commands on the u-boot command-line:
 
 ```
-  ubootprompt>setenv mtdparts "spi0.0:256k(u-boot)ro,64k(u-boot-env),1152k(kernel),14848k(rootfs),64k(art)ro"
-  ubootprompt>setenv bootcmd "run addboard; run addtty;run addparts; run addrootfs; bootm 0x9f050000"
-  ubootprompt>saveenv
+  linino>setenv mtdparts "spi0.0:256k(u-boot)ro,64k(u-boot-env),1152k(kernel),14848k(rootfs),64k(art)ro"
+  linino>setenv bootcmd "run addboard; run addtty;run addparts; run addrootfs; bootm 0x9f050000"
+  linino>saveenv
 ```
 
 ####Kernel memory alignment & padding
@@ -204,9 +215,9 @@ In u-boot you would execute the following commands to flash that kernel correctl
 
 ```
 
-  ubootprompt>tftp 0x80060000 your_1150k_kernel_file.bin
-  ubootprompt>erase 0x9f050000 +120000
-  ubootprompt>cp.b $fileaddr 0x9f050000 $filesize;
+  linino>tftp 0x80060000 your_1150k_kernel_file.bin
+  linino>erase 0x9f050000 +120000
+  linino>cp.b $fileaddr 0x9f050000 $filesize;
 
 ```
 
@@ -227,9 +238,9 @@ Here's what you need to do to flash that example rootfs:
 
 ```
 
-  ubootprompt>tftp 0x80060000 your_14720k_rootfs_file.bin
-  ubootprompt>erase 0x9f170000 +E80000
-  ubootprompt>cp.b $fileaddr 0x9f170000 $filesize;
+  linino>tftp 0x80060000 your_14720k_rootfs_file.bin
+  linino>erase 0x9f170000 +E80000
+  linino>cp.b $fileaddr 0x9f170000 $filesize;
 
 ```
 
@@ -242,9 +253,9 @@ If you want to flash the art-partition, you can do it like this:
 
 ```
 
-  ubootprompt>tftp 0x80060000 linino-caldata.bin
-  ubootprompt>erase 0x9fff0000 +10000
-  ubootprompt>cp.b $fileaddr 0x9fff0000 $filesize;
+  linino>tftp 0x80060000 linino-caldata.bin
+  linino>erase 0x9fff0000 +10000
+  linino>cp.b $fileaddr 0x9fff0000 $filesize;
 
 ```
 
