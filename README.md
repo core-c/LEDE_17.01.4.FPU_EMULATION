@@ -273,6 +273,130 @@ If you want to flash the art-partition, you can do it like this:
 >  Note: This is just an example. The numbers may vary with your own compiled firmware sizes.
 
 
+#Setup a network for the UJE_YUN
+
+####Connect to the Yún wireless network
+
+Just leave the ethernet cable connected.
+Find the UJE_YUN wireless hotspot, named: ***homeYun***, and connect to it.
+Once connected, in the webbrowser go to the UJE_YUN IP at: ***192.168.1.1***
+Luci will show you the login page. Login as ***root*** with the default password: ***arduino***
+Select *System, Administration* and adjust the password.
+Select *Network, Wireless* and *Scan* for your local LAN WiFi access point.
+*Connect* to your LAN WiFi.
+Once connected you can disable the homeYun's wireless AP if you want.
+> Note: You can not disable the homeYun AP _before_ joining another network, because once you disconnect your ethernet cable, there is no way of connecting your Yún again.
+
+
+#Using an SDcard to expand the Yún Linux memory
+
+####Extroot overlay
+
+```
+
+        # destroy partition information
+        dd if=/dev/zero of=/dev/sda bs=4096 count=10
+
+        # create 3 partitions for a 16G SDcard:   sda1 ext4 overlay (10G),   sda2 vfat (4G),   sda3 swap (rest)
+        (echo o; echo n; echo p; echo 1; echo; echo +10G; echo n; echo p; echo 2; echo; echo +4G; echo n; echo p; echo 3; echo; echo; echo t; echo 1; echo c; echo t; echo 3; echo 82; echo w) | fdisk /dev/sda
+
+        umount /dev/sda?
+        rm -rf /mnt/sda?
+
+        #delay(5000)
+
+        umount /dev/sda?
+        rm -rf /mnt/sda?
+
+        # format partition 1 as ext4
+        mkfs.ext4 /dev/sda1
+
+        #delay(100);
+
+        # format partition 2 as vfat
+        mkfs.fat /dev/sda2        		
+
+        # make partition 3 a swap
+        mkswap /dev/sda3
+
+        # prepare fat partition
+        mkdir -p /mnt/sda2
+        mount /dev/sda2 /mnt/sda2
+        #mkdir -p /mnt/sda2/arduino/www
+
+        umount /dev/sda?
+        rm -rf /mnt/sda?
+
+        # prepare extroot overlay on sda1
+        mkdir -p /mnt/sda1
+        mount /dev/sda1 /mnt/sda1
+        rsync -a --exclude=/mnt/ --exclude=/www/sd /overlay/ /mnt/sda1/
+
+        umount /dev/sda?
+        rm -rf /mnt/sda?
+
+        # update fstab
+        uci add fstab mount
+        uci set fstab.@mount[0].target=/overlay
+        uci set fstab.@mount[0].device=/dev/sda1
+        uci set fstab.@mount[0].fstype=ext4
+        uci set fstab.@mount[0].enabled=1
+        uci set fstab.@mount[0].enabled_fsck=0
+        uci set fstab.@mount[0].options=rw,sync,noatime,nodiratime
+        #uci add fstab mount
+        #uci set fstab.@mount[1].target=/mnt/sda2
+        #uci set fstab.@mount[1].device=/dev/sda2
+        #uci set fstab.@mount[1].fstype=vfat
+        #uci set fstab.@mount[1].enabled=1
+        #uci add fstab swap
+        #uci set fstab.@swap[0].device=/dev/sda3
+        #uci set fstab.@swap[0].enabled=1
+        uci commit
+
+```
+> Now edit ***/etc/config/fstab*** with the UJE_YUN info:
+```
+
+        config global
+            option anon_swap '0'
+            option anon_mount '0'
+            option auto_swap '1'
+            option auto_mount '1'
+            option delay_root '5'
+            option check_fs '0'
+
+        config global 'automount'
+            option from_fstab '1'
+            option anon_mount '1'
+            option anon_swap '0'
+            option auto_swap '1'
+            option auto_mount '1'
+            option check_fs '0'
+
+        config mount
+            option device '/dev/sda1'
+            option target '/overlay'
+            option fstype 'ext4'
+            option options 'rw,sync,noatime,nodiratime'
+            option enabled_fsck '0'
+            option enabled '1'
+
+        config mount
+            option device '/dev/sda2'
+            option target '/mnt/sdafat'
+            option fstype 'vfat'
+            option enabled '1'
+
+        config swap
+            option device '/dev/sda3'
+            option enabled '1'
+
+```
+
+> Reboot the Yún. The overlay should now be in place.
+
+
+
 ##Links
 
 [LEDE 17.01.4 source code](https://github.com/lede-project/source/tree/v17.01.4)
