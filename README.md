@@ -56,6 +56,29 @@ This will become the location where you want the LEDE source-code placed.
 ```
 
 
+####Feeds
+```
+
+		./scripts/feeds update -a
+		./scripts/feeds install -a
+
+```
+> Now there is a folder: ***source/package/feeds***
+
+At this time the LEDE Node feeds have been installed,
+we need to remove them, before adding nxhack Node:
+```
+
+        rm ./package/feeds/lede_packages/node
+        rm ./package/feeds/lede_packages/node-arduino-firmata
+        rm ./package/feeds/lede_packages/node-cylon
+        rm ./package/feeds/lede_packages/node-hid
+        rm ./package/feeds/lede_packages/node-serialport
+
+		./scripts/feeds install -a -p node
+
+```
+
 ####Copy the Yún specific ***SETUP files*** folder to your ***LEDE source*** folder
 ```
 
