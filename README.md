@@ -59,8 +59,8 @@ This will become the location where you want the LEDE source-code placed.
 ####Feeds
 ```
 
-		./scripts/feeds update -a
-		./scripts/feeds install -a
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
 
 ```
 > Now there is a folder: ***source/package/feeds***
@@ -76,7 +76,7 @@ we need to remove them, before adding nxhack Node:
         rm ./package/feeds/lede_packages/node-hid
         rm ./package/feeds/lede_packages/node-serialport
 
-		./scripts/feeds install -a -p node
+        ./scripts/feeds install -a -p node
 
 ```
 
