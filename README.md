@@ -2,7 +2,7 @@
 
 
 
-##Description
+##<span style="background-color:#F0F0F0">Description</span>
 
 - Firmware specially adapted for the Arduino Yún.
 - U-boot 1.1.5 Bootloader, with 'saveenv' support.
