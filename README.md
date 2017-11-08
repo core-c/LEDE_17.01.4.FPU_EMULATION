@@ -414,6 +414,24 @@ Just leave the ethernet cable connected.
 
 > Reboot the Yún. The overlay should now be in place.
 
+After the Yún has rebooted, you can check if the overlay is functioning:
+
+```
+
+        root@homeYun:~# df
+        Filesystem           1K-blocks      Used Available Use% Mounted on
+        /dev/root                13824     13824         0 100% /rom
+        tmpfs                    29980       336     29644   1% /tmp
+        /dev/sda1             10255636     37032   9677932   0% /overlay
+        overlayfs:/overlay    10255636     37032   9677932   0% /
+        tmpfs                      512         0       512   0% /dev
+        /dev/mtdblock4             896       224       672  25% /mnt/mtdblock4
+        /dev/sda2              4186104         4   4186100   0% /mnt/sda2
+        root@homeYun:~#
+
+```
+
+
 
 
 ##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Links</div>
