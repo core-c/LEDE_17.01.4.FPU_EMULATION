@@ -158,7 +158,13 @@ You can however use any size kernel. Say for example, you have compiled a 2048k 
 - Push the ***YUN RESET*** button on the Yún (the one closest to the LEDs)
 - Quickly follow up the instructions that the bootloader displays in the serial monitor
 > Insctructions are usually typing in some short text to the COM-port, like 'ard' or 'lin'.
-- The bootloader will show you its command-prompt
+- The bootloader will show you its command-prompt:
+
+```
+
+  ar7240>
+
+```
 
 
 ####Preparing for a firmware flash
