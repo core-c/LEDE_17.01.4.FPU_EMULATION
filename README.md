@@ -1,8 +1,8 @@
-#UJE_YUN firmware 17.01.4.FPU_EMULATION
+#<div style="background-color:#002060; padding:4px 8px 4px 20px">UJE_YUN firmware 17.01.4.FPU_EMULATION</div>
 
 
 
-##<div style="background-color:#BFE0E3; padding:8px 8px 4px 8px">Description</div>
+##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Description</div>
 
 - Firmware specially adapted for the Arduino Yún.
 - U-boot 1.1.5 Bootloader, with 'saveenv' support.
@@ -13,7 +13,7 @@
 
 
 
-##<div style="background-color:#BFE0E3; padding:8px 8px 4px 8px">Creating a cross-compiled custom firmware</div>
+##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Creating a cross-compiled custom firmware</div>
 
 ####The host computer
 A cross-compile is done on a Linux computer (not the Yún).
@@ -137,7 +137,7 @@ On a succesful compile you will find the firmware files at this location:
 
 
 
-##<div style="background-color:#BFE0E3; padding:8px 8px 4px 8px">Flashing the firmware</div>
+##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Flashing the firmware</div>
 
 ####UJE_YUN changes to original LEDE firmware
 We dropped the use of the NVRAM partition since it it not used at all on a Yún. The resulting extra 64k memory raise the maximum size of the UJE_YUN firmware to 16000k.
@@ -273,7 +273,7 @@ If you want to flash the art-partition, you can do it like this:
 >  Note: This is just an example. The numbers may vary with your own compiled firmware sizes.
 
 
-##<div style="background-color:#BFE0E3; padding:8px 8px 4px 8px">Setup a network for the UJE_YUN</div>
+##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Setup a network for the UJE_YUN</div>
 
 ####Connect to the Yún wireless network
 
@@ -288,7 +288,7 @@ Just leave the ethernet cable connected.
 > Note: You can not disable the homeYun AP _before_ joining another network. If you disconnect your ethernet cable, there is no way of connecting your Yún again.
 
 
-##<div style="background-color:#BFE0E3; padding:8px 8px 4px 8px">Using an SDcard to expand the Yún Linux memory</div>
+##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Using an SDcard to expand the Yún Linux memory</div>
 
 ####Extroot overlay
 
@@ -398,7 +398,7 @@ Just leave the ethernet cable connected.
 
 
 
-##<div style="background-color:#BFE0E3; padding:8px 8px 4px 8px">Links</div>
+##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Links</div>
 
 [LEDE 17.01.4 source code](https://github.com/lede-project/source/tree/v17.01.4)
 [LEDE downloads](http://downloads.lede-project.org/)
