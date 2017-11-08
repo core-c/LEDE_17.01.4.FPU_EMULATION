@@ -113,11 +113,13 @@ we need to remove them, before adding nxhack Node:
         make menuconfig
 
 ```
->  When you exit kernel_menuconfig and menuconfig,
->  if asked to write the config, confirm with YES.
+
+Make sure it is really the UJE_YUN config you see. For example, check if Luci has some parts selected, and you can select Node versions 4,6,8 & 9 (from nxhack repo).
+When you're done viewing the configuration, ***close menuconfig***.
+>  When you exit kernel_menuconfig and menuconfig, if asked to write the config, confirm with YES.
 
 
-####Now it is time to perform the cross-compile
+####Start the actual cross-compile
 ```
 
         make
