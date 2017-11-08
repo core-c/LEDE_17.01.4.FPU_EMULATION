@@ -5,7 +5,7 @@
 ##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Description</div>
 
 |:-----------|:------------|:----------------------------------|
-| Firmware   | UJE_YUN     | for Arduino Yún                   |
+| Firmware   | UJE_YUN     | Arduino Yún + CUL + FHEM          |
 | U-boot     | 1.1.5       | with 'saveenv' support            |
 | LEDE       | 17.01.4     | compiled with FPU_EMULATION       |
 | NodeJS     | 9.0.0       |                                   |
@@ -13,7 +13,8 @@
 | Python     | 2.7         |                                   |
 | Perl       | 5.26.1      |                                   |
 | HomeKit    | 0.4.31 r1   |                                   |
-| FHEM       | 5.8         | home-automation controller        |
+
+> The UJE_YUN firmware is designed to run the home-automation controller: FHEM 5.8
 
 
 
