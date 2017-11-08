@@ -1,8 +1,8 @@
-#<div style="background-color:#002060; padding:4px 8px 4px 20px">UJE_YUN firmware 17.01.4.FPU_EMULATION</div>
+#<div style="background-color:#002060; padding:4px 8px 4px 20px; color:#FFFFFF">UJE_YUN firmware 17.01.4.FPU_EMULATION</div>
 
 
 
-##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px; font-color:#FFFFFF">Description</div>
+##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Description</div>
 
 - Firmware specially adapted for the Arduino Yún.
 - U-boot 1.1.5 Bootloader, with 'saveenv' support.
