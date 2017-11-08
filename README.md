@@ -4,13 +4,17 @@
 
 ##<div style="background-color:#B0BFDC; padding:4px 8px 4px 20px">Description</div>
 
-- Firmware specially adapted for the Arduino Yún.
-- U-boot 1.1.5 Bootloader, with 'saveenv' support.
-- LEDE 17.01.4, with FPU_EMULATION (needed for NodeJS).
-- NodeJS 9.0.0
-- npm
-
-
+|            |             |                                   |
+|:-----------|:------------|:----------------------------------|
+| Firmware   | UJE_YUN     | for Arduino Yún                   |
+| U-boot     | 1.1.5       | with 'saveenv' support            |
+| LEDE       | 17.01.4     | compiled with FPU_EMULATION       |
+| NodeJS     | 9.0.0       |                                   |
+| npm        | 5.5.1       |                                   |
+| Python     | 2.7         |                                   |
+| Perl       | 5.26.1      |                                   |
+| HomeKit    | 0.4.31 r1   |                                   |
+| FHEM       | 5.8         | home-automation controller        |
 
 
 
