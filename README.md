@@ -278,14 +278,14 @@ If you want to flash the art-partition, you can do it like this:
 ####Connect to the Yún wireless network
 
 Just leave the ethernet cable connected.
-Find the UJE_YUN wireless hotspot, named: ***homeYun***, and connect to it.
-Once connected, in the webbrowser go to the UJE_YUN IP at: ***192.168.1.1***
-Luci will show you the login page. Login as ***root*** with the default password: ***arduino***
-Select *System, Administration* and adjust the password.
-Select *Network, Wireless* and *Scan* for your local LAN WiFi access point.
-*Connect* to your LAN WiFi.
-Once connected you can disable the homeYun's wireless AP if you want.
-> Note: You can not disable the homeYun AP _before_ joining another network, because once you disconnect your ethernet cable, there is no way of connecting your Yún again.
+- Find the UJE_YUN wireless hotspot, named: ***homeYun***, and connect to it
+- Once connected, in the webbrowser go to the UJE_YUN IP at: ***192.168.1.1***
+- Luci will show you the login page. Login as ***root*** with the default password: ***arduino***
+- Select *System, Administration* and ***adjust the password***
+- Select *Network, Wireless* and *Scan* for your local LAN WiFi access point
+- *Connect* to your LAN WiFi.
+> Once connected to your LAN WiFi, you can disable the homeYun's wireless AP if you want. Just do not disable all connections!
+> Note: You can not disable the homeYun AP _before_ joining another network. If you disconnect your ethernet cable, there is no way of connecting your Yún again.
 
 
 #Using an SDcard to expand the Yún Linux memory
@@ -355,6 +355,7 @@ Once connected you can disable the homeYun's wireless AP if you want.
 
 ```
 > Now edit ***/etc/config/fstab*** with the UJE_YUN info:
+
 ```
 
         config global
