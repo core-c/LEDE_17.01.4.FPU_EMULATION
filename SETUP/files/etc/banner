@@ -13,7 +13,7 @@ yunCUL:/#
   Compile: VirtualBox, Linux Ubuntu 17.04, oct 5 2017
 Languages:/#
   NodeJS 9.0.0         Python 2.7
-  npm    3.10.10       Perl   5.26.1
+  npm    5.5.1         Perl   5.26.1
 Automation-Controller:/#
   FHEM    5.8
   HomeKit 0.4.31 release 1
