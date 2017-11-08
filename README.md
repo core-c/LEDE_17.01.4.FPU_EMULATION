@@ -67,6 +67,7 @@ This will become the location where you want the LEDE source-code placed.
 
 At this time the LEDE Node feeds have been installed,
 we need to remove them, before adding nxhack Node:
+
 ```
 
         rm ./package/feeds/lede_packages/node
