@@ -11,8 +11,14 @@ Kernel:/#
 yunCUL:/#
   cullfw 1.67 (specially ported for Yún)
   Compile: VirtualBox, Linux Ubuntu 17.04, oct 5 2017
+Languages:/#
+  NodeJS 9.0.0         Python 2.7
+  npm    3.10.10       Perl   5.26.1
+Automation-Controller:/#
+  FHEM    5.8
+  HomeKit 0.4.31 release 1
 
-
+  
 
    868MHz            MAX!   MAXLAN Homekit       WiFi   
     ψ                                              ψ    

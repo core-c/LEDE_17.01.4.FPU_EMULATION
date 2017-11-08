@@ -284,7 +284,7 @@ Just leave the ethernet cable connected.
 - Select *System, Administration* and ***adjust the password***
 - Select *Network, Wireless* and *Scan* for your local LAN WiFi access point
 - *Connect* to your LAN WiFi.
-> Once connected to your LAN WiFi, you can disable the homeYun's wireless AP if you want. Just do not disable all connections!
+> Once connected to your LAN WiFi, you can disable the homeYun's wireless AP if you want. Remember to leave at least one connection enabled, at all times.
 > Note: You can not disable the homeYun AP _before_ joining another network. If you disconnect your ethernet cable, there is no way of connecting your Yún again.
 
 
