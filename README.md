@@ -360,18 +360,19 @@ Just leave the ethernet cable connected.
         uci set fstab.@mount[0].enabled=1
         uci set fstab.@mount[0].enabled_fsck=0
         uci set fstab.@mount[0].options=rw,sync,noatime,nodiratime
-        #uci add fstab mount
-        #uci set fstab.@mount[1].target=/mnt/sda2
-        #uci set fstab.@mount[1].device=/dev/sda2
-        #uci set fstab.@mount[1].fstype=vfat
-        #uci set fstab.@mount[1].enabled=1
-        #uci add fstab swap
-        #uci set fstab.@swap[0].device=/dev/sda3
-        #uci set fstab.@swap[0].enabled=1
+        uci add fstab mount
+        uci set fstab.@mount[1].target=/mnt/sda2
+        uci set fstab.@mount[1].device=/dev/sda2
+        uci set fstab.@mount[1].fstype=vfat
+        uci set fstab.@mount[1].enabled=1
+        uci add fstab swap
+        uci set fstab.@swap[0].device=/dev/sda3
+        uci set fstab.@swap[0].enabled=1
         uci commit
 
 ```
-> Now edit ***/etc/config/fstab*** with the UJE_YUN info:
+
+> Now ***/etc/config/fstab*** will look like this:
 
 ```
 
