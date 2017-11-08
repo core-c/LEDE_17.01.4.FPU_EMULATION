@@ -178,8 +178,10 @@ You can however use any size kernel. Say for example, you have compiled a 2048k 
 - In u-boot set ***serverip*** and ***ipaddr***. Suppose your host uses ip-address 192.168.178.100, and your Yún uses ip-address 192.168.178.107, you need to do:
 
 ```
+
   ar7240>setenv serverip 192.168.178.100
   ar7240>setenv ipaddr 192.168.178.107
+
 ```
 
 ####u-boot & u-boot-env flash partitions
@@ -190,10 +192,12 @@ The original Yún sizes are set to: 14656k(rootfs),1280k(kernel).
 The newer bootloader u-boot 1.1.5 supports the ***saveenv*** command (and lots more). We need to upgrade an original Yún with this newer bootloader. Here's how to do it:
 
 ```
+
   ar7240>tftp 0x80060000 u-boot-linino-yun.bin;
   ar7240>erase 0x9f000000 +40000;
   ar7240>cp.b $fileaddr 0x9f000000 $filesize;
   ar7240>erase 0x9f040000 +10000;
+
 ```
 > After flashing a new u-boot, also allocate the u-boot-env, using that last command which erases 64k starting from 0x9f040000.
 > You need to reboot your Yún.
@@ -208,12 +212,32 @@ You can revive a "bricked" Yún (even if it doesn't even show up in the Arduino 
 ####Prepare the u-boot environment settings before flashing UJE_YUN firmware
 To be able to flash a new firmware that is not compatible with the original memory layout, you need to adjust the u-boot environment settings ***and save the new settings so they remain after a boot***.
 When the Yún boots, you can see the MTD (Memory Technology Device) information displayed, showing the current flash memory layout being used.
+
+```
+
+        [    0.650000] 7 cmdlinepart partitions found on MTD device spi0.0
+        [    0.660000] Creating 7 MTD partitions on "spi0.0":
+        [    0.660000] 0x000000000000-0x000000040000 : "u-boot"
+        [    0.660000] 0x000000040000-0x000000050000 : "u-boot-env"
+        [    0.670000] 0x000000050000-0x000000ea0000 : "rootfs"
+        [    0.670000] mtd: partition "rootfs" set to be root filesystem
+        [    0.670000] mtd: partition "rootfs_data" created automatically, ofs=7B0000, len=6F0000 
+        [    0.680000] 0x0000007b0000-0x000000ea0000 : "rootfs_data"
+        [    0.680000] 0x000000ea0000-0x000000fe0000 : "kernel"
+        [    0.680000] 0x000000fe0000-0x000000ff0000 : "nvram"
+        [    0.690000] 0x000000ff0000-0x000001000000 : "art"
+        [    0.690000] 0x000000050000-0x000000fe0000 : "firmware"
+
+```
+
 To change the u-boot settings for our UJE_YUN example, we would execute the following commands on the u-boot command-line:
 
 ```
+
   linino>setenv mtdparts "spi0.0:256k(u-boot)ro,64k(u-boot-env),1152k(kernel),14848k(rootfs),64k(art)ro"
   linino>setenv bootcmd "run addboard; run addtty;run addparts; run addrootfs; bootm 0x9f050000"
   linino>saveenv
+
 ```
 
 ####Kernel memory alignment & padding
