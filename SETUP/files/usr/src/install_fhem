@@ -1,0 +1,57 @@
+
+
+
+Copy the FHEM source code to ***/usr/src***
+and enter the ***fhem*** folder.
+
+```
+
+        cd /usr/src/fhem
+
+        make install
+
+```
+> FHEM is now installed in ***/opt/fhem***
+
+
+
+If it does not yet exist, create a file ***/etc/init.d/fhem*** with the following content:
+> This file is already included on the Yun in latest firmware.
+
+```
+
+        #!/bin/sh /etc/rc.common
+        # FHEM Init Script
+        START=99
+        STOP=15
+        start() {
+            /usr/bin/fhem.pl /etc/fhem.cfg
+        }
+        stop(){
+            echo &quot;shutdown&quot; | nc localhost 7072
+        }
+
+```
+> This is the file that makes FHEM run as a service.
+
+
+
+Change permissions
+
+```
+
+        chmod +x /etc/init.d/fhem
+
+```
+
+
+
+Enable and start FHEM as a service
+
+```
+
+        /etc/init.d/fhem enable
+        /etc/init.d/fhem start
+
+```
+
