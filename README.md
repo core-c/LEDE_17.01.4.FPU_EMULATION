@@ -396,11 +396,14 @@ function copyTextToClipboard(text) {
 
   document.body.removeChild(textArea);
 }
+var copyExtroot = document.querySelector('.js-copyExtroot');
+copyExtroot.addEventListener('click', function(event) {
+  copyTextToClipboard('Bob');
+});
 </script>
-<code>
-ha
-</code>
-
+<div style="display:inline-block; vertical-align:top;">
+  <button class="js-copyExtroot">Copy ready-to-run text to clipboard</button>
+</div>
 
 ```
 
