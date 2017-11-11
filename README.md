@@ -339,69 +339,20 @@ Just leave the ethernet cable connected.
 
 ####Extroot overlay
 
-<script type="text/javascript">
-function copyTextToClipboard(text) {
-  var textArea = document.createElement("textarea");
-
-  //
-  // *** This styling is an extra step which is likely not required. ***
-  //
-  // Why is it here? To ensure:
-  // 1. the element is able to have focus and selection.
-  // 2. if element was to flash render it has minimal visual impact.
-  // 3. less flakyness with selection and copying which **might** occur if
-  //    the textarea element is not visible.
-  //
-  // The likelihood is the element won't even render, not even a flash,
-  // so some of these are just precautions. However in IE the element
-  // is visible whilst the popup box asking the user for permission for
-  // the web page to copy to the clipboard.
-  //
-
-  // Place in top-left corner of screen regardless of scroll position.
-  textArea.style.position = 'fixed';
-  textArea.style.top = 0;
-  textArea.style.left = 0;
-
-  // Ensure it has a small width and height. Setting to 1px / 1em
-  // doesn't work as this gives a negative w/h on some browsers.
-  textArea.style.width = '2em';
-  textArea.style.height = '2em';
-
-  // We don't need padding, reducing the size if it does flash render.
-  textArea.style.padding = 0;
-
-  // Clean up any borders.
-  textArea.style.border = 'none';
-  textArea.style.outline = 'none';
-  textArea.style.boxShadow = 'none';
-
-  // Avoid flash of white box if rendered for any reason.
-  textArea.style.background = 'transparent';
-
-
-  textArea.value = text;
-
-  document.body.appendChild(textArea);
-
-  textArea.select();
-
-  try {
-    var successful = document.execCommand('copy');
-  } catch (err) {
-  }
-
-  document.body.removeChild(textArea);
-}
-</script>
-<button onclick="javascript:copyTextToClipboard('Bob')">Copy ready-to-run text to clipboard</button>
-
+- Destroy partition information
+- Create 3 partitions for a 16G SDcard:   sda1 ext4 overlay (10G),   sda2 vfat (4G),   sda3 swap (rest)
+- Format partition 1 as ext4
+- Format partition 2 as vfat
+- Make partition 3 a swap
+- Mount the fat partition
+- Extroot overlay on sda1
+- Update fstab
+- Reboot
+		
 ```
 
-        # destroy partition information
         dd if=/dev/zero of=/dev/sda bs=4096 count=10
 
-        # create 3 partitions for a 16G SDcard:   sda1 ext4 overlay (10G),   sda2 vfat (4G),   sda3 swap (rest)
         (echo o; echo n; echo p; echo 1; echo; echo +10G; echo n; echo p; echo 2; echo; echo +4G; echo n; echo p; echo 3; echo; echo; echo t; echo 1; echo c; echo t; echo 3; echo 82; echo w) | fdisk /dev/sda
 
         umount /dev/sda?
@@ -412,26 +363,20 @@ function copyTextToClipboard(text) {
         umount /dev/sda?
         rm -rf /mnt/sda?
 
-        # format partition 1 as ext4
         mkfs.ext4 /dev/sda1
 
         sleep 1
 
-        # format partition 2 as vfat
         mkfs.fat /dev/sda2        		
 
-        # make partition 3 a swap
         mkswap /dev/sda3
 
-        # prepare fat partition
         mkdir -p /mnt/sda2
         mount /dev/sda2 /mnt/sda2
-        #mkdir -p /mnt/sda2/arduino/www
 
         umount /dev/sda?
         rm -rf /mnt/sda?
 
-        # prepare extroot overlay on sda1
         mkdir -p /mnt/sda1
         mount /dev/sda1 /mnt/sda1
         rsync -a --exclude=/mnt/ --exclude=/www/sd /overlay/ /mnt/sda1/
@@ -439,7 +384,6 @@ function copyTextToClipboard(text) {
         umount /dev/sda?
         rm -rf /mnt/sda?
 
-        # update fstab
         uci add fstab mount
         uci set fstab.@mount[0].target=/overlay
         uci set fstab.@mount[0].device=/dev/sda1
@@ -457,6 +401,7 @@ function copyTextToClipboard(text) {
         uci set fstab.@swap[0].enabled=1
         uci commit
 
+        reboot
 ```
 
 > Now ***/etc/config/fstab*** will look like this:
