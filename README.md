@@ -339,6 +339,16 @@ Just leave the ethernet cable connected.
 
 ####Extroot overlay
 
+$(function () {
+    $(document).on('click', 'code', function () {
+      $(this).addClass("active")
+       textarea =  $("<textarea>").val($(this).html()).height(0).appendTo(document.body).select();
+        document.execCommand('copy');
+       textarea.remove();
+    });
+});
+<code>
+</code>
 ```
 
         # destroy partition information
@@ -350,7 +360,7 @@ Just leave the ethernet cable connected.
         umount /dev/sda?
         rm -rf /mnt/sda?
 
-        #delay(5000)
+        sleep 5
 
         umount /dev/sda?
         rm -rf /mnt/sda?
@@ -358,7 +368,7 @@ Just leave the ethernet cable connected.
         # format partition 1 as ext4
         mkfs.ext4 /dev/sda1
 
-        #delay(100);
+        sleep 1
 
         # format partition 2 as vfat
         mkfs.fat /dev/sda2        		

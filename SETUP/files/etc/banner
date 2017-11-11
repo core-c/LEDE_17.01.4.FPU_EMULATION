@@ -7,18 +7,19 @@ Firmware:/#
   LuCI Master (git-17.302.29094-87ec343)
 Kernel:/#
   4.4.92 compiled with FPU emulation
-  Compile: Virtualbox, Linux Debian, nov 2 2017
 yunCUL:/#
   cullfw 1.67 (specially ported for Yún)
-  Compile: VirtualBox, Linux Ubuntu 17.04, oct 5 2017
 Languages:/#
-  NodeJS 9.0.0         Python 2.7
-  npm    5.5.1         Perl   5.26.1
+  NodeJS  9.1.0
+  npm     5.5.1
+  Python  2.7
+  Perl    5.26.1
 Automation-Controller:/#
-  FHEM    5.8
-  HomeKit 0.4.31 release 1
+  FHEM             5.8               
+  homebridge-fhem  0.3.7
+  homebridge       0.4.31 release 1
+  hap-nodejs       0.4.36
 
-  
 
    868MHz            MAX!   MAXLAN Homekit       WiFi   
     ψ                                              ψ    
