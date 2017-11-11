@@ -339,6 +339,10 @@ Just leave the ethernet cable connected.
 
 ####Extroot overlay
 
+<code>
+ha
+</code>
+<script>
 $(function () {
     $(document).on('click', 'code', function () {
       $(this).addClass("active")
@@ -347,9 +351,8 @@ $(function () {
        textarea.remove();
     });
 });
-<code>
-ha
-</code>
+</script>
+
 ```
 
         # destroy partition information
