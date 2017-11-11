@@ -401,7 +401,7 @@ copyExtroot.addEventListener('click', function(event) {
   copyTextToClipboard('Bob');
 });
 </script>
-  <button class="js-copyExtroot">Copy ready-to-run text to clipboard</button>
+  <button onclick="copyTextToClipboard('Bob')">Copy ready-to-run text to clipboard</button>
 
 ```
 
