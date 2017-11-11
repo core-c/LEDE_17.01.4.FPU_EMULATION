@@ -339,7 +339,7 @@ Just leave the ethernet cable connected.
 
 ####Extroot overlay
 
-<script>
+<script type="text/javascript">
 function copyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
 
@@ -388,20 +388,13 @@ function copyTextToClipboard(text) {
 
   try {
     var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Copying text command was ' + msg);
   } catch (err) {
-    console.log('Oops, unable to copy');
   }
 
   document.body.removeChild(textArea);
 }
-var copyExtroot = document.querySelector('.js-copyExtroot');
-copyExtroot.addEventListener('click', function(event) {
-  copyTextToClipboard('Bob');
-});
 </script>
-  <button onclick="copyTextToClipboard('Bob')">Copy ready-to-run text to clipboard</button>
+<button onclick="javascript:copyTextToClipboard('Bob')">Copy ready-to-run text to clipboard</button>
 
 ```
 
