@@ -342,7 +342,6 @@ Just leave the ethernet cable connected.
 <code>
 ha
 </code>
-<script>
 $(function () {
     $(document).on('click', 'code', function () {
       $(this).addClass("active")
@@ -351,7 +350,6 @@ $(function () {
        textarea.remove();
     });
 });
-</script>
 
 ```
 
