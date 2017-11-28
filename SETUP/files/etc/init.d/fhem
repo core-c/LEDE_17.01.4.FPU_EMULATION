@@ -1,10 +1,11 @@
 #!/bin/sh /etc/rc.common
 # FHEM Init Script
+# remember to change execution permissions of this file
 START=99
 STOP=15
 start() {
-    pl /opt/fhem/fhem.pl /opt/fhem/fhem.cfg
+	/opt/fhem/fhem.pl /opt/fhem/fhem.cfg
 }
 stop(){
-    echo &quot;shutdown&quot; | nc localhost 7072
+	/opt/fhem/fhem.pl 7072 shutdown
 }
