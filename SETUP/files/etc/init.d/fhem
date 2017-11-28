@@ -3,7 +3,7 @@
 START=99
 STOP=15
 start() {
-    /usr/bin/fhem.pl /etc/fhem.cfg
+    pl /opt/fhem/fhem.pl /opt/fhem/fhem.cfg
 }
 stop(){
     echo &quot;shutdown&quot; | nc localhost 7072

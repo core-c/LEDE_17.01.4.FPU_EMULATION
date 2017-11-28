@@ -7,15 +7,15 @@ dd if=/dev/zero of=/dev/sda bs=4096 count=10
 umount /dev/sda?
 rm -rf /mnt/sda?
 
-#delay(5000)
+sleep 5
 
 umount /dev/sda?
 rm -rf /mnt/sda?
 
-# format partition 1 as ext4
+# format partition 1 as ext4    !!! This step requires user input < y
 mkfs.ext4 /dev/sda1
 
-#delay(100);
+sleep 1
 
 # format partition 2 as vfat
 mkfs.fat /dev/sda2        		

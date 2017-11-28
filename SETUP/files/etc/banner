@@ -6,19 +6,14 @@ Firmware:/#
   LEDE Reboot 17.01.4 r3560-79f57e422d, oct 18 2017
   LuCI Master (git-17.302.29094-87ec343)
 Kernel:/#
-  4.4.92 compiled with FPU emulation
+  4.4.92
 yunCUL:/#
   cullfw 1.67 (specially ported for Yún)
-Languages:/#
-  NodeJS  9.1.0
-  npm     5.5.1
-  Python  2.7
-  Perl    5.26.1
 Automation-Controller:/#
-  FHEM             5.8               
-  homebridge-fhem  0.3.7
-  homebridge       0.4.31 release 1
-  hap-nodejs       0.4.36
+  FHEM 5.8               
+Languages:/#
+  Python 2.7
+  Perl 5.26.1
 
 
    868MHz            MAX!   MAXLAN Homekit       WiFi   
@@ -26,7 +21,7 @@ Automation-Controller:/#
   ╔═╪═════════════════════╤════════════════════════╪═╗  
   ║ └ATmega32u4   Serial1◄╪►ttyATH0          AR9331┘ ║  
   ║………▲▼………………………………………………│………………………………………………………▲▼………║  
-  ║ yunCUL                │   FHEM NodeJS HomeBridge ║  
+  ║ yunCUL                │         FHEM  HAP-Bridge ║  
   ╚═══════════════════════╧══════════════════════════╝  
    _    ___ ___  ___   ____  ___ ___   __   __  _____   
   | |  | __|   \| __| |    \| __| _ \ /  \ /  \|_   _|  
