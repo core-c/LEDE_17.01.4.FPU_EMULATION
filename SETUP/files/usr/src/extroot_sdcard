@@ -1,45 +1,25 @@
-# destroy partition information
 dd if=/dev/zero of=/dev/sda bs=4096 count=10
-
-# create 3 partitions for a 16G SDcard:   sda1 ext4 overlay (10G),   sda2 vfat (4G),   sda3 swap (rest)
-(echo o; echo n; echo p; echo 1; echo; echo +10G; echo n; echo p; echo 2; echo; echo +4G; echo n; echo p; echo 3; echo; echo; echo t; echo 1; echo c; echo t; echo 3; echo 82; echo w) | fdisk /dev/sda
-
+(echo o; echo n; echo p; echo 1; echo; echo +5120M; echo n; echo p; echo 2; echo; echo +2048M; echo n; echo p; echo 3; echo; echo; echo w) | fdisk /dev/sda
 umount /dev/sda?
 rm -rf /mnt/sda?
-
 sleep 5
-
 umount /dev/sda?
 rm -rf /mnt/sda?
-
-# format partition 1 as ext4    !!! This step requires user input < y
-mkfs.ext4 /dev/sda1
-
+(echo y) | mkfs.ext4 /dev/sda1
 sleep 1
-
-# format partition 2 as vfat
 mkfs.fat /dev/sda2        		
-
-# make partition 3 a swap
 mkswap /dev/sda3
-
-# prepare fat partition
+umount /dev/sda?
+rm -rf /mnt/sda?
 mkdir -p /mnt/sda2
 mount /dev/sda2 /mnt/sda2
-#mkdir -p /mnt/sda2/arduino/www
-
 umount /dev/sda?
 rm -rf /mnt/sda?
-
-# prepare extroot overlay on sda1
 mkdir -p /mnt/sda1
 mount /dev/sda1 /mnt/sda1
 rsync -a --exclude=/mnt/ --exclude=/www/sd /overlay/ /mnt/sda1/
-
 umount /dev/sda?
 rm -rf /mnt/sda?
-
-# update fstab
 uci add fstab mount
 uci set fstab.@mount[0].target=/overlay
 uci set fstab.@mount[0].device=/dev/sda1
@@ -56,3 +36,4 @@ uci add fstab swap
 uci set fstab.@swap[0].device=/dev/sda3
 uci set fstab.@swap[0].enabled=1
 uci commit
+reboot
