@@ -7,13 +7,18 @@ Firmware:/#
   LuCI Master (git-17.302.29094-87ec343)
 Kernel:/#
   4.4.92
-yunCUL:/#
-  cullfw 1.67 (specially ported for Yún)
-Automation-Controller:/#
-  FHEM 5.8               
 Languages:/#
   Python 2.7
   Perl 5.26.1
+yunCUL:/#
+  cullfw 1.67 (special UJE port for Yún)
+Automation-Controller:/#
+  FHEM 5.8
+  ffmax 1.08   Homekit Accessory Protocol bridge
+Cross-Compile:/#
+  Virtual Linux Ubuntu & Virtual Linux Debian
+  No FPU emulation
+  Date: October - December 2017
 
 
    868MHz            MAX!   MAXLAN Homekit       WiFi   
@@ -21,7 +26,7 @@ Languages:/#
   ╔═╪═════════════════════╤════════════════════════╪═╗  
   ║ └ATmega32u4   Serial1◄╪►ttyATH0          AR9331┘ ║  
   ║………▲▼………………………………………………│………………………………………………………▲▼………║  
-  ║ yunCUL                │         FHEM  HAP-Bridge ║  
+  ║ yunCUL                │         FHEM   ffmax:HAP ║  
   ╚═══════════════════════╧══════════════════════════╝  
    _    ___ ___  ___   ____  ___ ___   __   __  _____   
   | |  | __|   \| __| |    \| __| _ \ /  \ /  \|_   _|  
