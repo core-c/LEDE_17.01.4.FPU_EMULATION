@@ -9,3 +9,5 @@ users:x:100:
 network:x:101:
 netdev:x:102:
 nogroup:x:65534:
+dnsmasq:x:453:dnsmasq
+fhem:x:1966:
